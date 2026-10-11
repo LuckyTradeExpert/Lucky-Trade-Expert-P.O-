@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050914">
+<title>Trade With Rock — Signal Demo</title>
+<style>
+:root{--bg:#050914;--panel:#0a1020;--cyan:#28e7d0;--yellow:#ffd400;--green:#00ff68;--muted:#a8b4c8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#10202a 0,#050914 48%,#02040a 100%);color:#f5f7fb;font-family:system-ui,Arial,sans-serif;min-height:100vh;padding:16px}
+.wrap{max-width:650px;margin:0 auto;padding:18px 0 35px}.clock{border:1px solid var(--cyan);color:var(--cyan);border-radius:24px;padding:9px 14px;display:inline-block;font-weight:800;font-size:13px}
+.panel{margin-top:22px;border:2px solid var(--cyan);border-radius:30px;padding:24px 18px;box-shadow:0 0 24px #00e8cc22;background:#080d1c}
+h1{text-align:center;color:var(--yellow);font-size:clamp(25px,6vw,38px);margin:10px 0 4px;letter-spacing:1px}
+.tag{text-align:center;color:var(--green);font-weight:900;font-size:clamp(15px,4vw,22px);margin:0 0 24px}
+button,.btn{display:block;width:100%;border:0;border-radius:18px;padding:17px 14px;margin:12px 0;font-size:17px;font-weight:900;letter-spacing:.3px;text-align:center;text-decoration:none;color:#08101a;cursor:pointer;background:linear-gradient(100deg,#ffd400,#00ff68)}
+.blue{background:linear-gradient(100deg,#008bdf,#00d9ff);color:white}.yellow{background:linear-gradient(100deg,#ffd400,#ff9900)}
+.hidden{display:none}.small{color:var(--muted);font-size:13px;line-height:1.5;text-align:center}.section{border:1px solid #635a23;border-radius:20px;padding:16px;margin:20px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.step{border:1px solid #6b6025;border-radius:13px;padding:10px 3px;text-align:center;color:var(--muted);font-size:12px}.step b{display:block;color:var(--green);font-size:20px;margin-top:4px}
+label{display:block;color:var(--cyan);font-weight:800;margin:22px 0 8px}select{width:100%;padding:16px;border-radius:14px;border:2px solid var(--cyan);background:#080d1c;color:#fff;font-size:16px}
+.result{padding:18px;border-radius:16px;background:#111b2c;border:1px solid #33475d;margin-top:18px;text-align:center}.signal{font-size:28px;font-weight:1000;margin:8px}.buy{color:#00ff85}.sell{color:#ff627c}.demo{color:#ffcf49;font-weight:800;font-size:12px}
+footer{text-align:center;color:#77849a;font-size:12px;margin-top:22px}
+</style>
+</head>
+<body><main class="wrap">
+<div class="clock">🇮🇳 IST <span id="clock">--:--:--</span></div>
+<section id="welcome" class="panel">
+<h1>Trade With Rock 🪨💰</h1><p class="tag">⚡ TRADING SIGNAL BOT ⚡</p>
+<button onclick="showDashboard()">START BOT 🚀</button>
+<p class="small">Mobile-friendly sample website. Signals on this demo are illustrative only.</p>
+</section>
+<section id="dashboard" class="panel hidden">
+<h1>Trade With Rock 🪨 💰</h1><p class="tag">⚡ SIGNAL DASHBOARD ⚡</p>
+<a class="btn yellow" href="https://t.me/" target="_blank" rel="noopener">✈️ Open Telegram</a>
+<a class="btn blue" href="https://t.me/" target="_blank" rel="noopener">📣 Telegram Channel</a>
+<div class="section"><p style="color:var(--yellow);font-weight:900;text-align:center;margin-top:0">🛡️ 4-STEP MONEY MANAGEMENT</p>
+<div class="steps"><div class="step">Step 1<b>$1</b></div><div class="step">Step 2<b>$2</b></div><div class="step">Step 3<b>$5</b></div><div class="step">Step 4<b>$12</b></div></div>
+<p class="small">Demo values only. Recovery/martingale strategies can increase losses.</p></div>
+<label for="market">📊 SELECT ASSET MARKET</label>
+<select id="market"><option>USD/VND OTC</option><option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option><option>BTC/USD</option></select>
+<button onclick="getSignal()">GET DEMO SIGNAL 🎯</button>
+<div id="result" class="result hidden"><div class="demo">DEMO RESULT — NOT A LIVE MARKET PREDICTION</div><div id="direction" class="signal">BUY</div><div id="asset"></div><div id="time"></div></div>
+<button class="blue" onclick="showWelcome()">← BACK</button>
+<p class="small">This demo does not connect to a broker or real-time market data. Do not trade based on its sample result.</p>
+</section>
+<footer>Sample project • Not financial advice • No guaranteed accuracy</footer>
+</main>
+<script>
+function showDashboard(){document.getElementById('welcome').classList.add('hidden');document.getElementById('dashboard').classList.remove('hidden')}
+function showWelcome(){document.getElementById('dashboard').classList.add('hidden');document.getElementById('welcome').classList.remove('hidden')}
+function getSignal(){const dir=Math.random()<.5?'BUY':'SELL';const d=document.getElementById('direction');d.textContent=dir;d.className='signal '+(dir==='BUY'?'buy':'sell');document.getElementById('asset').textContent='Market: '+document.getElementById('market').value;document.getElementById('time').textContent='Generated: '+new Date().toLocaleTimeString();document.getElementById('result').classList.remove('hidden')}
+function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata'})}tick();setInterval(tick,1000);
+</script></body></html>
